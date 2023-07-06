@@ -42,7 +42,7 @@ export const StartCountDownButton = styled(BaseCountDownButton)`
   background: ${(props) => props.theme.secondary_light};
 
   &:not(disabled):hover {
-    background: ${(props) => props.theme.primary_light};
+    background: ${(props) => props.theme.primary_dark};
   }
 `
 
