@@ -6,18 +6,15 @@ interface ButtonComponentProps {
   variant: ButtonVariant
 }
 
-const buttonVariant = {
-  primary: 'purple',
-  secondary: 'orange',
-  success: 'green',
-  danger: 'red',
-}
 export const ButtonComponent = styled.button<ButtonComponentProps>`
-  height: 50px;
-  width: 100px;
+  height: 30px;
+  width: fit-content;
+  padding: 0 2%;
 
   border: none;
   border-radius: 10px;
 
-  background-color: ${(props) => props.theme['green-500']};
+  color: ${(props) => props.theme.primary_light};
+
+  background-color: ${(props) => props.theme.primary_dark};
 `

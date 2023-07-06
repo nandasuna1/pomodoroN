@@ -19,3 +19,47 @@ export const defaultTheme = {
 
   'yellow-500': '#FBA94C',
 }
+
+export const darkTheme = {
+  white: '#fff',
+  black: '#000',
+
+  primary_dark: '#1F1836',
+  secondary_dark: '#1E1E31',
+
+  primary_light: '#D3C0D2',
+  secondary_light: '#623CEA',
+
+  primary_negative: '#E23434',
+  secondary_negative: '#911F1F',
+
+  third_light: '#F3A712',
+
+  dark: '#151515',
+
+  yellow: 'F3A712',
+  green: 'green',
+  red: 'E23434',
+}
+
+export const lightTheme = {
+  white: '#fff',
+  black: '#000',
+
+  primary_dark: '#26547C',
+  secondary_dark: '#1E1E31',
+
+  primary_light: '#FFFCF9',
+  secondary_light: '#EF476F',
+
+  primary_negative: '#E23434',
+  secondary_negative: '#911F1F',
+
+  third_light: '#FFD166',
+
+  dark: '#151515',
+
+  yellow: '#FFD166',
+  green: '#06D6A0',
+  red: '#EF476F',
+}

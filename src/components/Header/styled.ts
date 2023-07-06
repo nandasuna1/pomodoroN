@@ -17,18 +17,39 @@ export const HeaderContainer = styled.header`
       justify-content: center;
       align-items: center;
 
-      color: ${(props) => props.theme['gray-100']};
+      color: ${(props) => props.theme.primary_light};
 
       border-top: 3px solid transparent;
       border-bottom: 3px solid transparent;
 
       &:hover {
-        border-bottom: 3px solid ${(props) => props.theme['green-500']};
+        border-bottom: 3px solid ${(props) => props.theme.primary_dark};
       }
 
       &.active {
-        color: ${(props) => props.theme['green-500']};
+        color: ${(props) => props.theme.third_light};
       }
+    }
+  }
+
+  button {
+    height: 30px;
+    width: fit-content;
+    padding: 0 2%;
+
+    border: none;
+    border-radius: 10px;
+
+    background-color: ${(props) => props.theme.primary_dark};
+    font-weight: bolder;
+
+    cursor: pointer;
+
+    color: ${(props) => props.theme.white};
+
+    &:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
     }
   }
 `
