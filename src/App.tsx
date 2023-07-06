@@ -1,5 +1,5 @@
 import { ThemeContextProvider } from './context/ThemeContext'
-import { AppContent } from './Appcontent'
+import { AppContent } from './AppContent'
 
 export function App() {
   return (
