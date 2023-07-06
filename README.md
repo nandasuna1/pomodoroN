@@ -29,4 +29,4 @@ Além dos conceitos mencionados acima, também utilizamos outros recursos e conc
 ## Conclusão
 Este projeto utilizou conceitos avançados do React, como Context API e useReducer, para criar um aplicativo de timer com histórico de atividades. Esses conceitos nos permitem criar aplicações mais escaláveis, organizadas e com um melhor gerenciamento de estado.
 
-Se você quiser aprender mais sobre esses conceitos ou explorar o código-fonte do projeto, sinta-se à vontade para verificar o código disponível neste repositório.
+Se você quiser aprender mais sobre esses conceitos ou explorar o código-fonte do projeto, sinta-se à vontade para verificar o código disponível neste repositório!
