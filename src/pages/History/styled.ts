@@ -2,7 +2,7 @@ import { styled } from 'styled-components'
 
 export const HistoryContainer = styled.main`
   flex: 1;
-  //padding: 3.5rem;
+  height: 70%;
 
   display: flex;
   flex-direction: column;
@@ -21,9 +21,15 @@ export const HistoryContainer = styled.main`
 `
 
 export const HistoryList = styled.div`
-  flex: 1;
-  overflow: auto;
-  margin-top: 2rem;
+  height: 100%;
+  overflow-y: auto;
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 
   table {
     width: 100%;
@@ -71,7 +77,6 @@ export const HistoryList = styled.div`
   @media only screen and (max-width: 650px) {
     margin: 0;
     width: 80%;
-    height: 80px;
     overflow-y: auto;
 
     table {

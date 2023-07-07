@@ -11,6 +11,7 @@ import { useForm, FormProvider } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as zod from 'zod'
 import { CyclesContext } from '../../context/CyclesContext'
+import { ButtonComponent } from '../../components/Button'
 export const FormContext = createContext({})
 
 export function Home() {
@@ -52,16 +53,14 @@ export function Home() {
           <NewCycleForm />
         </FormProvider>
         <CountDown />
-        {activeCycle ? (
-          <StopCountDownButton type="button" onClick={interruptCurrentCycle}>
-            <HandPalm size={24} />
-            Interromper
-          </StopCountDownButton>
+        {!activeCycle ? (
+          <ButtonComponent type="submit" disabled={isSubmitDisabled} />
         ) : (
-          <StartCountDownButton disabled={isSubmitDisabled} type="submit">
-            <Play size={24} />
-            Começar
-          </StartCountDownButton>
+          <ButtonComponent
+            type="button"
+            isStart={false}
+            handleOnClick={interruptCurrentCycle}
+          />
         )}
       </form>
     </HomeContainer>
