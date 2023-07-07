@@ -11,6 +11,13 @@ export const HistoryContainer = styled.main`
     font-size: 1.5rem;
     color: ${(props) => props.theme.white};
   }
+
+  @media only screen and (max-width: 650px) {
+    padding: 10% 0;
+    width: 100vw;
+    height: 100%;
+    margin: 0;
+  }
 `
 
 export const HistoryList = styled.div`
@@ -60,6 +67,42 @@ export const HistoryList = styled.div`
       }
     }
   }
+
+  @media only screen and (max-width: 650px) {
+    margin: 0;
+    width: 80%;
+    height: 80px;
+    overflow-y: auto;
+
+    table {
+      th {
+        text-align: center;
+        line-height: 1.4;
+
+        &:first-child {
+          padding-left: 0;
+        }
+
+        &:last-child {
+          padding-right: 0;
+        }
+      }
+
+      td {
+        width: 100vw;
+        border-top: 0;
+        line-height: 1.4;
+
+        &:first-child {
+          padding-left: 3%;
+        }
+
+        &:last-child {
+          padding-right: 3%;
+        }
+      }
+    }
+  }
 `
 const STATUS_COLOR = {
   yellow: 'yellow',
@@ -75,13 +118,24 @@ export const Status = styled.span<StatusProps>`
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  width: max-content;
 
   &::before {
     content: '';
     width: 0.5rem;
     height: 0.5rem;
     border-radius: 50%;
-    background-color: ${(props) =>
-      props.theme[STATUS_COLOR[props.statuscolor]]};
+    background-color: ${(props) => props.theme[`${props.statuscolor}`]};
+  }
+
+  @media only screen and (max-width: 650px) {
+    gap: 10px;
+    &::before {
+      content: '';
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: ${(props) => props.theme[`${props.statuscolor}`]};
+    }
   }
 `

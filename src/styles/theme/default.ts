@@ -37,9 +37,9 @@ export const darkTheme = {
 
   dark: '#151515',
 
-  yellow: 'F3A712',
-  green: 'green',
-  red: 'E23434',
+  yellow: '#FFD166',
+  green: '#06D6A0',
+  red: '#EF476F',
 }
 
 export const lightTheme = {

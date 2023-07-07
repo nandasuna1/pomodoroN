@@ -24,4 +24,16 @@ export const GlobalStyle = createGlobalStyle`
         font-weight: 400;
         font-size: 1rem;
     }
+
+
+    @media only screen and (max-width: 500px) {
+    body {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-items: center;
+        align-items: center;
+    }
+}
 `

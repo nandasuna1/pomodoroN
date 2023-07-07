@@ -33,7 +33,7 @@ export const HeaderContainer = styled.header`
   }
 
   button {
-    height: 30px;
+    height: 5vh;
     width: fit-content;
     padding: 0 2%;
 
@@ -50,6 +50,22 @@ export const HeaderContainer = styled.header`
     &:disabled {
       opacity: 0.7;
       cursor: not-allowed;
+    }
+  }
+
+  @media only screen and (max-width: 650px) {
+    height: 3vh;
+
+    nav {
+    }
+    nav a {
+      width: 3rem;
+      height: 3rem;
+    }
+
+    button {
+      height: 3vh;
+      border-radius: 5px;
     }
   }
 `
