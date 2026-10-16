@@ -1,7 +1,10 @@
 import { useCallback, useRef, useState } from 'react'
 import prompts from '../assets/rest-prompts.json'
 
-export function createRestPrompts(seed?: number, promptsList: string[] = prompts) {
+export function createRestPrompts(
+  seed?: number,
+  promptsList: string[] = prompts,
+) {
   let random = Math.random
   if (seed !== undefined) {
     let state = seed >>> 0

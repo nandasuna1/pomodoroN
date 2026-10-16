@@ -13,7 +13,6 @@ import { TimerSettings as TimerSettingsForm } from './settings/TimerSettings'
 import rest from '../assets/rest-prompts.json'
 import active from '../assets/active-prompts.json'
 
-
 function formatTime(seconds: number) {
   const minutes = Math.floor(seconds / 60)
     .toString()
@@ -26,8 +25,10 @@ export function Timer() {
   const [settings, setSettings] = useState(loadSettings)
   const { timer, start, pause, reset } = useTimerHook(settings)
   const { current: currentPrompt, next: nextPrompt } = useRestPrompts(rest)
-  const { current: currentActivePrompt, next: nextActivePrompt } = useRestPrompts(active)
+  const { current: currentActivePrompt, next: nextActivePrompt } =
+    useRestPrompts(active)
   const previousPhase = useRef(timer.currentPhase)
+
   const [bellUnavailable, setBellUnavailable] = useState(false)
 
   useEffect(() => {
@@ -57,7 +58,13 @@ export function Timer() {
     }
 
     previousPhase.current = current
-  }, [timer.currentPhase, currentPrompt, nextPrompt])
+  }, [
+    timer.currentPhase,
+    currentPrompt,
+    nextPrompt,
+    currentActivePrompt,
+    nextActivePrompt,
+  ])
 
   function handleSettingsSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
