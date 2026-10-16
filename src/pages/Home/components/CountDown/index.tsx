@@ -30,7 +30,7 @@ export function CountDown() {
   }, [minutes, seconds, activeCycle])
 
   useEffect(() => {
-    let interval: number
+    let interval: ReturnType<typeof setInterval> | undefined
 
     if (activeCycle) {
       interval = setInterval(() => {
@@ -42,7 +42,7 @@ export function CountDown() {
         if (secondsDifference >= totalSeconds) {
           markCurrentCycleAsFinished()
           setSecondsPassed(totalSeconds)
-          clearInterval(interval)
+          if (interval) clearInterval(interval)
         } else {
           setSecondsPassed(secondsDifference)
         }
@@ -50,9 +50,9 @@ export function CountDown() {
     }
 
     return () => {
-      clearInterval(interval)
+      if (interval) clearInterval(interval)
     }
-  }, [activeCycle, totalSeconds, markCurrentCycleAsFinished])
+  }, [activeCycle, totalSeconds, markCurrentCycleAsFinished, setSecondsPassed])
 
   return (
     <CountdownContainer>

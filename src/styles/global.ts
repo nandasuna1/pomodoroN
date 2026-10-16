@@ -1,6 +1,15 @@
 import { createGlobalStyle } from 'styled-components'
 
 export const GlobalStyle = createGlobalStyle`
+    :root {
+        --timer-background: ${(props) => props.theme.primary_dark};
+        --timer-surface: ${(props) => props.theme.secondary_dark};
+        --timer-accent: ${(props) => props.theme.secondary_light};
+        --timer-highlight: ${(props) => props.theme.third_light};
+        --timer-text: ${(props) => props.theme.text};
+        --timer-mascot-filter: ${(props) => props.theme.mascotFilter};
+    }
+
     * {
         margin: 0;
         padding: 0;
@@ -14,26 +23,23 @@ export const GlobalStyle = createGlobalStyle`
 
     body {
         background-color: ${(props) => props.theme.primary_dark};
-        color: ${(props) => props.theme.white};
-
+        color: ${(props) => props.theme.text};
+        min-width: 320px;
+        min-height: 100vh;
         -webkit-font-smoothing: antialiased;
     }
 
+    button, input {
+        color: inherit;
+    }
+
     body, input, textarea, button {
-        font-family: 'Roboto', sans-serif;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         font-weight: 400;
         font-size: 1rem;
     }
 
-
-    @media only screen and (max-width: 500px) {
-    body {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: row;
-        justify-items: center;
-        align-items: center;
+    button {
+        font: inherit;
     }
-}
 `

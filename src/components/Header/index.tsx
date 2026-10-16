@@ -1,23 +1,26 @@
-import { Timer, Scroll } from 'phosphor-react'
+import { Coffee, Scroll, Timer } from 'phosphor-react'
 import { NavLink } from 'react-router-dom'
 import { HeaderContainer } from './styled'
-import { useContext } from 'react'
-import { ThemeContext } from '../../context/ThemeContext'
+import { ThemeSettings } from '../settings/ThemeSettings'
 
 export function Header() {
-  const { setAppTheme } = useContext(ThemeContext)
-
   return (
     <HeaderContainer>
-      <button onClick={setAppTheme}>Mude o tema</button>
+      <NavLink className="brand" to="/" aria-label="Pomodoro home">
+        <Coffee size={26} weight="duotone" />
+        <span>Pomodoro</span>
+      </NavLink>
       <nav>
         <NavLink to="/" title="Timer">
           <Timer size={24} />
+          <span>Focus</span>
         </NavLink>
         <NavLink to="/history" title="Histórico">
           <Scroll size={24} />
+          <span>History</span>
         </NavLink>
       </nav>
+      <ThemeSettings />
     </HeaderContainer>
   )
 }
