@@ -1,71 +1,79 @@
 import { styled } from 'styled-components'
 
 export const HeaderContainer = styled.header`
+  position: relative;
+  z-index: 1;
+  min-height: 5rem;
+  padding: 0 clamp(1.25rem, 4vw, 3.75rem);
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 1.25rem;
+  border-bottom: 1px solid
+    color-mix(in srgb, var(--timer-text) 12%, transparent);
+  background: color-mix(in srgb, var(--timer-surface) 78%, transparent);
+  color: var(--timer-text);
+  backdrop-filter: blur(18px);
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    color: inherit;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+  }
 
   nav {
     display: flex;
-    gap: 0.5rem;
+    gap: 0.35rem;
 
     a {
-      width: 3rem;
-      height: 3rem;
-
+      min-height: 2.75rem;
+      padding: 0 1rem;
       display: flex;
-      justify-content: center;
       align-items: center;
-
-      color: ${(props) => props.theme.primary_light};
-
-      border-top: 3px solid transparent;
-      border-bottom: 3px solid transparent;
-
-      &:hover {
-        border-bottom: 3px solid ${(props) => props.theme.primary_dark};
-      }
+      justify-content: center;
+      gap: 0.5rem;
+      border-radius: 999px;
+      color: inherit;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 160ms ease, color 160ms ease;
 
       &.active {
-        color: ${(props) => props.theme.third_light};
+        background: color-mix(in srgb, var(--timer-accent) 18%, transparent);
+        color: inherit;
+      }
+
+      &:hover:not(.active) {
+        background: color-mix(in srgb, var(--timer-text) 8%, transparent);
       }
     }
   }
 
-  button {
-    height: 5vh;
-    width: fit-content;
-    padding: 0 2%;
+  @media (max-width: 520px) {
+    min-height: 4.25rem;
+    padding: 0 1rem;
+    gap: 0.5rem;
 
-    border: none;
-    border-radius: 10px;
-
-    background-color: ${(props) => props.theme.primary_dark};
-    font-weight: bolder;
-
-    cursor: pointer;
-
-    color: ${(props) => props.theme.white};
-
-    &:disabled {
-      opacity: 0.7;
-      cursor: not-allowed;
+    .brand {
+      gap: 0.4rem;
+      font-size: 1rem;
     }
-  }
-
-  @media only screen and (max-width: 650px) {
-    height: 3vh;
 
     nav {
+      gap: 0;
     }
     nav a {
-      width: 3rem;
-      height: 3rem;
+      min-height: 2.5rem;
+      padding: 0 0.6rem;
     }
-
-    button {
-      height: 3vh;
-      border-radius: 5px;
+    nav a span {
+      display: none;
     }
   }
 `

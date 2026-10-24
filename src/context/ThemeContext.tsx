@@ -1,4 +1,5 @@
-import { ReactNode, createContext, useState } from 'react'
+import { ReactNode, createContext, useEffect, useState } from 'react'
+import { loadSettings, saveSettings } from '../utils/persistence'
 
 interface ThemeContextType {
   darkThemeApp: boolean
@@ -12,11 +13,16 @@ interface ThemeContextProviderProps {
 export const ThemeContext = createContext({} as ThemeContextType)
 
 export function ThemeContextProvider({ children }: ThemeContextProviderProps) {
-  const [darkThemeApp, setDarkTheme] = useState<boolean>(false)
+  const [darkThemeApp, setDarkTheme] = useState(
+    () => loadSettings().theme === 'dark',
+  )
+
+  useEffect(() => {
+    saveSettings({ ...loadSettings(), theme: darkThemeApp ? 'dark' : 'light' })
+  }, [darkThemeApp])
 
   function setAppTheme() {
     setDarkTheme((prevTheme) => !prevTheme)
-    console.log('context', darkThemeApp)
   }
 
   return (

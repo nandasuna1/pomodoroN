@@ -1,3 +1,5 @@
+import { coffeeLight, darkPurpleBlue } from '../theme'
+
 export const defaultTheme = {
   white: '#fff',
 
@@ -21,21 +23,23 @@ export const defaultTheme = {
 }
 
 export const darkTheme = {
-  white: '#fff',
+  white: '#F4F1FF',
   black: '#000',
 
-  primary_dark: '#1F1836',
-  secondary_dark: '#1E1E31',
+  primary_dark: darkPurpleBlue.background,
+  secondary_dark: darkPurpleBlue.surface,
 
-  primary_light: '#D3C0D2',
-  secondary_light: '#623CEA',
+  primary_light: darkPurpleBlue.text,
+  secondary_light: '#5947B2',
 
   primary_negative: '#E23434',
   secondary_negative: '#911F1F',
 
   third_light: '#F3A712',
 
-  dark: '#151515',
+  dark: darkPurpleBlue.background,
+  text: darkPurpleBlue.text,
+  mascotFilter: darkPurpleBlue.mascotFilter,
 
   yellow: '#FFD166',
   green: '#06D6A0',
@@ -43,21 +47,23 @@ export const darkTheme = {
 }
 
 export const lightTheme = {
-  white: '#fff',
+  white: '#FFF9F1',
   black: '#000',
 
-  primary_dark: '#26547C',
-  secondary_dark: '#1E1E31',
+  primary_dark: coffeeLight.background,
+  secondary_dark: coffeeLight.surface,
 
-  primary_light: '#FFFCF9',
-  secondary_light: '#EF476F',
+  primary_light: coffeeLight.text,
+  secondary_light: '#7b4b24',
 
   primary_negative: '#E23434',
   secondary_negative: '#911F1F',
 
-  third_light: '#FFD166',
+  third_light: '#496232',
 
-  dark: '#151515',
+  dark: coffeeLight.text,
+  text: coffeeLight.text,
+  mascotFilter: coffeeLight.mascotFilter,
 
   yellow: '#FFD166',
   green: '#06D6A0',

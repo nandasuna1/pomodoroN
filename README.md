@@ -30,3 +30,8 @@ Além dos conceitos mencionados acima, também utilizamos outros recursos e conc
 Este projeto utilizou conceitos avançados do React, como Context API e useReducer, para criar um aplicativo de timer com histórico de atividades. Esses conceitos nos permitem criar aplicações mais escaláveis, organizadas e com um melhor gerenciamento de estado.
 
 Se você quiser aprender mais sobre esses conceitos ou explorar o código-fonte do projeto, sinta-se à vontade para verificar o código disponível neste repositório!
+## Pomodoro sessions
+
+The timer supports focus/rest rounds, a cat mascot, 15 rotating break suggestions, audible bell cues, and persistent Coffee light and Dark themes. Defaults are 25 minutes of focus, 5 minutes of rest, and 4 rounds. Configure durations and rounds from the timer screen; saved settings are kept in browser local storage.
+
+Run locally with `npm run dev`. Validate changes with `npm test`, `npm run test:accessibility`, `npm run test:perf`, `npm run lint`, and `npm run build`. For quick manual checks, set focus and rest to one minute and rounds to one or two.
