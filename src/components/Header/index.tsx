@@ -1,4 +1,4 @@
-import { Coffee, Scroll, Timer } from 'phosphor-react'
+import { Coffee } from 'phosphor-react'
 import { NavLink } from 'react-router-dom'
 import { HeaderContainer } from './styled'
 import { ThemeSettings } from '../settings/ThemeSettings'
@@ -11,14 +11,14 @@ export function Header() {
         <span>Pomodoro</span>
       </NavLink>
       <nav>
-        <NavLink to="/" title="Timer">
+        {/* <NavLink to="/" title="Timer">
           <Timer size={24} />
           <span>Focus</span>
-        </NavLink>
-        <NavLink to="/history" title="Histórico">
+        </NavLink> */}
+        {/* <NavLink to="/history" title="Histórico">
           <Scroll size={24} />
           <span>History</span>
-        </NavLink>
+        </NavLink> */}
       </nav>
       <ThemeSettings />
     </HeaderContainer>
