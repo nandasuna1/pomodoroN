@@ -16,6 +16,10 @@
 
 (Integrated: Mascot asset approach decided — vector-based animated assets preferred for v1 to prioritize accessibility, small bundle size, and reduced-motion support.)
 
+### Session 2026-10-16
+
+- Q: Should rest prompts avoid every repeat until all 15 have appeared, or is a looser repeat limit acceptable? → A: Only avoid repeating the immediately previous prompt.
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Start Pomodoro Cycle (Priority: P1)
@@ -61,7 +65,7 @@ As a user, I want a small animated cat aligned with the timer that reflects acti
 **Acceptance Scenarios**:
 
 1. **Given** rest period begins, **When** UI shows rest timer, **Then** cat animation switches to rest-behavior (e.g., stretching, reading) and a rest prompt is displayed.
-2. **Given** multiple rest cycles, **When** prompts are shown, **Then** prompts rotate without immediate repetition until all 15 are used (or randomized with low repetition over short sequences).
+2. **Given** multiple rest cycles, **When** prompts are shown, **Then** the current prompt differs from the prompt shown during the immediately previous rest; prompts may repeat before all 15 have appeared.
 
 ---
 
@@ -99,7 +103,7 @@ As a user, I want a small animated cat aligned with the timer that reflects acti
 - **SC-001**: 100% of acceptance scenarios in User Story 1 must pass in manual QA (timers, bells, rounds cycle).
 - **SC-002**: Theme toggling MUST preserve contrast and keyboard accessibility. Automated accessibility checks MUST report zero critical violations for the timer screen in CI; any non-critical violations MUST be documented with justification.
 - **SC-003**: Mascot appears and updates animation within 500ms of phase change (perceptual responsiveness requirement).
-- **SC-004**: At least 15 rest prompts are available; during a sequence of 15 rest cycles, prompts must not repeat more than once.
+- **SC-004**: At least 15 rest prompts are available; no prompt is shown during two consecutive rest periods.
 - **SC-005**: Default configuration (25/5/4) MUST be applied for first-time users. Persistence MUST be verifiable by unit/integration tests that assert settings are correctly restored after a reload; these tests MUST pass deterministically in CI.
 
 ## Assumptions

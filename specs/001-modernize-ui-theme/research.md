@@ -35,15 +35,26 @@
 
 ### 4. Accurate timer behavior and test coverage
 
-**Decision**: Base remaining time on elapsed timestamps/deadlines, not interval callback counts. Use fake timers for transitions, rendered component tests for full phase flow and existing history integration, and viewport-based DOM checks for overflow.
+**Decision**: Base remaining time on an absolute wall-clock deadline, not interval callback counts. Time continues to elapse while the browser is backgrounded or the device sleeps. Pause stores the remaining duration and Resume establishes a new deadline. Use fake timers for transitions, rendered component tests for full phase flow and existing history integration, and viewport-based DOM checks for overflow.
 
-**Rationale**: Background tabs throttle intervals; decrementing once per callback causes timer drift. Pure class tests do not prove visible controls, prompt/audio behavior, or preservation of named records.
+**Rationale**: Background tabs throttle intervals; decrementing once per callback causes timer drift. A wall-clock deadline tracks elapsed time even when callbacks are delayed or the device sleeps. A system clock adjustment can affect the deadline, which is an accepted tradeoff for this user-facing countdown. Pure class tests do not prove visible controls, prompt/audio behavior, or preservation of named records.
 
 **Alternatives considered**:
 - Count one second per interval callback — rejected because throttling causes drift.
+- Use a monotonic clock — rejected for v1 because sleep behavior varies by platform and the desired behavior is to let time continue across sleep.
 - Unit-only state-transition tests — rejected as insufficient for the reported UI and audio regressions.
 
-### 5. Theme palette and focus treatment
+### 5. Rest prompt rotation
+
+**Decision**: Ensure that consecutive rest periods show different prompts; a prompt may recur after at least one different prompt has appeared. A no-repeat-until-exhaustion queue is not required.
+
+**Rationale**: The clarified acceptance criterion prohibits immediate repetition only. This gives prompt rotation a deterministic, small validation target without promising full-set coverage in a random sequence.
+
+**Alternatives considered**:
+- Shuffle all 15 prompts without replacement — rejected because the clarified behavior permits repeats before all prompts appear.
+- Randomize freely — rejected because it could repeat the same instruction in consecutive rests.
+
+### 6. Theme palette and focus treatment
 
 **Decision**: Implement a four-or-more-token beige/brown light palette without green and preserve dark blue/purple with yellow accent. Validate text and interactive control contrast in both themes; retain visible keyboard focus.
 
@@ -57,7 +68,9 @@
 
 - Existing project implementation inspected: `src/context/CyclesContext.tsx`, `src/reducers/cycles/`, `src/pages/History/`, `src/pages/Home/`, `src/components/Header/`, and the current timer and sound modules.
 - Browser autoplay and timer-throttling behavior are treated as platform constraints and covered by explicit user-gesture audio initialization, failure fallback, and elapsed-time design.
+- Platform references: [WHATWG timers](https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#timers), [Chrome timer throttling](https://developer.chrome.com/blog/timer-throttling-in-chrome-88), [Page Visibility API](https://developer.mozilla.org/en-US/docs/Web/API/Page_Visibility_API), [Chrome autoplay policy](https://developer.chrome.com/blog/autoplay), and [MDN media playback](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play).
+- Accessibility references: [WCAG 2.2 status messages](https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html), [WCAG pause, stop, hide](https://www.w3.org/WAI/WCAG22/Understanding/pause-stop-hide.html), and [reduced motion media query](https://www.w3.org/TR/mediaqueries-5/#prefers-reduced-motion).
 
 ## Resolution
 
-No implementation unknowns remain for this design pass. The explicit new layout and presentation requirements take precedence over the previous green-highlight light-theme choice; other Pomodoro cycle, accessibility, storage, and mascot requirements remain in scope.
+No implementation unknowns remain for this design pass. The explicit new layout and presentation requirements take precedence over the previous green-highlight light-theme choice. Prompt rotation is limited to avoiding consecutive repeats; other Pomodoro cycle, accessibility, storage, and mascot requirements remain in scope.

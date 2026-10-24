@@ -1,6 +1,7 @@
 # Implementation Plan: Focus Time App UI and Pomodoro Flow
 
 **Branch**: `001-modernize-ui-theme` | **Spec**: [spec.md](spec.md)
+**Date**: 2026-10-16
 
 **Input**: Feature specification plus the user's requested UI corrections: prevent overflow; brand the top-left as “Focus Time App”; put a single-line configuration row above a timer centered in the left content area with the cat to its left; place Resume and Reset below; show “Focus” during focus and an actionable prompt during rest; preserve task names and completed Pomodoro history; use a four-or-more-token beige/brown light theme without green; retain a theme switch; and make bell playback reliable.
 
@@ -8,7 +9,7 @@
 
 Deliver the Pomodoro work/rest cycle and its existing task/history workflow as one cohesive, responsive screen. Keep the current React, TypeScript, Vite, styled-components, and localStorage stack. The page header places the product name at the upper left and a persistent theme control at the right. The work area is constrained to the viewport: settings form a single row above a timer group centered within the left-side content area; the cat sits directly left of the timer. Resume and Reset controls sit below the timer, and the existing task-name entry/history navigation and records remain available. At narrow widths the layout wraps or stacks without horizontal overflow.
 
-During focus, display the phase label “Focus”; during rest, display one of 15 concise prompts and a distinct rest mascot behavior. Activity/rest transitions play the supplied bell after a user gesture has unlocked audio; if playback is unavailable, show a visible status and a user-operated Play Sound control. Preserve existing cycle names and history records, and add completed focus/rest rounds without replacing the existing task-history feature.
+During focus, display the phase label “Focus”; during rest, display one of 15 concise prompts and a distinct rest mascot behavior. Do not show the same prompt in consecutive rest periods; prompts may recur after another prompt has appeared. Activity/rest transitions play the supplied bell after a user gesture has unlocked audio; if playback is unavailable, show a visible status and a user-operated Play Sound control. Preserve existing cycle names and history records, and add completed focus/rest rounds without replacing the existing task-history feature.
 
 ## Technical Context
 
@@ -22,7 +23,7 @@ During focus, display the phase label “Focus”; during rest, display one of 1
 
 **Target Platform**: Web browsers, desktop and tablet first, responsive mobile.
 
-**Performance Goals**: Start/pause/reset/theme interactions under 100ms; phase and mascot update within 500ms. Timer accuracy must be based on elapsed time rather than assuming interval callbacks are punctual.
+**Performance Goals**: Start/pause/reset/theme interactions under 100ms; phase and mascot update within 500ms. Timer accuracy must be based on elapsed time rather than assuming interval callbacks are punctual. Time continues to elapse while the browser is backgrounded or the device sleeps.
 
 **Constraints**:
 - Constitution requirements are binding: accessible semantic controls, visible keyboard focus, contrast, component-first boundaries, and automated tests before non-trivial behavior.
@@ -33,6 +34,10 @@ During focus, display the phase label “Focus”; during rest, display one of 1
 
 **Scope**: Existing Home, Header, History, Cycle context/reducer, theme context, and feature timer components. Keep the existing task-entry and History route; do not replace or discard prior named Pomodoro records.
 
+**Project Type**: Client-side web application.
+
+**Scale/Scope**: One active Pomodoro session per browser tab; up to 99 configured rounds and a curated set of 15 rest prompts. No account sync or backend service.
+
 ## Architecture and UI Decisions
 
 1. **Header**: show “Focus Time App” at top-left on all app routes. Keep the theme switch visible and keyboard-operable in the header.
@@ -42,7 +47,7 @@ During focus, display the phase label “Focus”; during rest, display one of 1
 5. **Theme tokens**: define named background, surface, raised surface, primary text, and accent tokens for both palettes. Coffee light tokens are beige/brown only; verify readable foreground/background and control contrast.
 6. **Audio**: import the supplied MP3 through Vite so its emitted URL is valid. Preload it and prime/unlock audio from the Start user gesture; play at each phase boundary. Handle rejected playback and missing assets as explicit state, with visual bell feedback and a retry control.
 7. **Responsive behavior**: use min-width: 0, max-width constraints, flexible grid/flex wrapping, and bounded content. At mobile widths stack the configuration and mascot/timer as needed; never require horizontal scrolling for the primary timer UI.
-8. **Mascot**: keep vector/CSS animation small, non-blocking, and reduced-motion aware. Render distinct reading/exercise rest states, with adjacent prompt text as the authoritative instruction.
+8. **Mascot and prompts**: keep vector/CSS animation small, non-blocking, and reduced-motion aware. Render distinct reading/exercise rest states, with adjacent prompt text as the authoritative instruction. Choose prompts so consecutive rest periods never show the same text; repeats after an intervening prompt are allowed and no full-set shuffle is required.
 
 ## Constitution Check
 
@@ -57,7 +62,7 @@ No unjustified constitution violations. UI acceptance gates are no horizontal ov
 
 ## Phase 0: Research Decisions
 
-See [research.md](research.md). Key decisions: maintain the existing cycle/history store; use responsive CSS grid/flex rather than fixed viewport sizing; use a single user gesture to prime browser audio and expose a retry fallback; use elapsed-time timer updates; and test overflow, theme contrast, accessibility, and a rendered full cycle.
+See [research.md](research.md). Key decisions: maintain the existing cycle/history store; use responsive CSS grid/flex rather than fixed viewport sizing; use a single user gesture to prime browser audio and expose a retry fallback; calculate time from a wall-clock deadline so background time counts; avoid only consecutive rest-prompt repeats; and test overflow, theme contrast, accessibility, and a rendered full cycle.
 
 ## Phase 1: Design Artifacts
 

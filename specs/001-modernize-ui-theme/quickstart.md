@@ -18,7 +18,7 @@
 4. Enter a task/project name. Set focus and rest durations to 1 minute and rounds to 1; save configuration.
 5. Confirm the configuration appears on one line above the timer at desktop width. The cat should sit left of the timer, with Resume/Reset below.
 6. Start focus. Confirm the visible **Focus** label, countdown, and sound unlock from the click. At one minute, confirm the bell plays and rest begins with one prompt.
-7. At rest completion, confirm the second bell, completed state, and that the named Pomodoro appears in History. Reset must not erase that record.
+7. At rest completion, confirm the second bell, completed state, and that the named Pomodoro appears in History. Reset must not erase that record. For successive rests, verify that adjacent prompts differ; repeats after an intervening prompt are acceptable.
 8. Switch to Coffee and Dark themes. Confirm the choice persists after reload; Coffee uses beige/brown tones without green.
 9. Resize to tablet and mobile widths and zoom the browser. Confirm all settings and controls remain usable and the page has no horizontal overflow.
 10. Simulate blocked audio if possible; confirm a visible explanation and Play Sound retry appear.

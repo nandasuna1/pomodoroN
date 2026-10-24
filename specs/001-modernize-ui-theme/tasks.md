@@ -160,3 +160,13 @@ description: "Implementation tasks for the Focus Time App UI and Pomodoro flow"
 ## Format Validation
 
 Every task uses an unchecked checkbox, sequential `T###` ID, an optional `[P]` marker only when file-level parallelism is safe, a required `[US#]` marker for user-story tasks, and a concrete repository path.
+
+## Phase 7: Convergence
+
+- [ ] T044 Add required task-name entry and visible validation, and enforce the planned duration and 1–99 round bounds per FR-001, US1/AC1 (partial)
+- [ ] T045 Replace interval-counted countdown with elapsed-time-based timing while preserving pause, resume, reset, and phase transitions per plan: timer accuracy (partial)
+- [ ] T046 Connect named session start and completion to the existing cycle context/reducer and preserve legacy history records per plan: history preservation, US1/AC4 (missing)
+- [ ] T053 Add rendered tests for complete timer/history/audio flows, responsive layout, both-theme accessibility and contrast, prompt rotation, mascot states, reduced motion, and settings persistence per SC-002, SC-005, plan: integration and accessibility tests (missing)
+- [ ] T054 Add cycle fixtures, viewport-based responsive test helpers, and shared fake-timer setup per plan: test setup, T001–T003 (missing)
+- [ ] T055 Record the passing test, lint, and build commands in `specs/001-modernize-ui-theme/quickstart.md` per T043 (partial)
+- [ ] T056 Add CI checks for actual token-pair contrast and keyboard focus visibility in both rendered themes per SC-002, US2/AC1–2 (missing)

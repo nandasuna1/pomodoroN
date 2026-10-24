@@ -32,7 +32,7 @@ Offline, curated prompt content.
 
 - `id`: stable unique identifier (for example `rp-01`).
 - `text`: plain text, actionable, maximum 80 characters.
-- At least 15 records; randomized queue does not repeat an item until the queue is exhausted, and the first item of the next queue differs from the previous final item.
+- At least 15 records. Consecutive rest periods must display different prompts; prompts may recur after an intervening prompt, and the set need not be exhausted before a repeat.
 
 ### PomodoroRecord (existing History/Cycle record)
 

@@ -12,6 +12,7 @@
 - On desktop/tablet, configuration controls form one horizontal row.
 - The timer group is centered within the left content area. The cat illustration is immediately to the timer's left and vertically aligned with the time display.
 - The phase label and time remain legible at all supported sizes. Focus phase text is exactly **Focus**. Rest phase text includes the current actionable prompt.
+- Consecutive rest periods show different prompts. A prompt may recur after at least one different prompt; prompts do not need to cycle through the entire set before repeating.
 - **Resume** and **Reset** controls are shown below the timer; Resume toggles to Pause while running.
 - At mobile widths, settings may wrap/stack and the cat may move above or beside the timer, but no horizontal viewport overflow is permitted.
 - No fixed viewport-height sizing may clip controls; long task names/prompts are constrained and wrap.
